@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>PriceWatch - Dashboard</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div id="app" class="container">
+    <header class="page-header">
+      <h1>PriceWatch</h1>
+      <p class="subtitle">Subscription Price Tracking Dashboard</p>
+    </header>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-number" id="totalCount">0</div>
+        <div class="stat-label">Subscriptions Tracked</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="changedCount">0</div>
+        <div class="stat-label">Price Changes</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="monthlyTotal">$0</div>
+        <div class="stat-label">Monthly Spend</div>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <h2>All Subscriptions</h2>
+      <div class="toolbar-actions">
+        <input id="searchInput" type="text" placeholder="Search..." class="search-input">
+        <button id="btnExport" class="btn btn-secondary">Export</button>
+      </div>
+    </div>
+
+    <div id="subList" class="table-container">
+      <div class="empty-state-large">No subscriptions yet</div>
+    </div>
+
+    <div class="footer-actions">
+      <button id="btnCheckAll" class="btn btn-primary">Check All</button>
+    </div>
+
+    <!-- Cloud Sync Section -->
+    <div class="card" style="margin-top: 24px;">
+      <h2>Cloud Sync</h2>
+      <p style="color: #5f6368; font-size: 14px; margin-bottom: 16px;">
+        Sync your subscriptions across devices. Log in to the PriceWatch web app and paste your API token here.
+      </p>
+      <div id="syncStatus" style="margin-bottom: 12px;">
+        <span id="syncStatusText" style="font-weight: 500;">Not connected</span>
+      </div>
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+        <input id="tokenInput" type="text" placeholder="Paste your API token" style="flex: 1; min-width: 200px; padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px;">
+        <button id="btnSaveToken" class="btn btn-primary">Save Token</button>
+        <button id="btnClearToken" class="btn btn-secondary">Disconnect</button>
+        <a id="btnGetToken" href="#" style="font-size: 13px; color: #2563eb;">Get token from web app &rarr;</a>
+      </div>
+      <p style="font-size: 12px; color: #9ca3af; margin-top: 8px;">
+        Your token is stored locally and never shared.
+      </p>
+    </div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

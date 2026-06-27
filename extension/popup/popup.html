@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PriceWatch</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div id="app">
+    <div class="header">
+      <h1>PriceWatch</h1>
+      <div class="header-right">
+        <span id="syncBadge" class="sync-badge" style="display:none" title="Cloud sync enabled">&#x2601;&#xFE0F;</span>
+        <span id="subCount" class="badge">0</span>
+      </div>
+    </div>
+
+    <div id="detectPanel" class="panel">
+      <div class="panel-title">Current Page</div>
+      <div id="autoDetectInfo" class="detect-info">
+        <span id="detectStatus">Detecting...</span>
+        <button id="btnQuickAdd" class="btn btn-primary" style="display:none">Track This</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Add Manually</div>
+      <div class="form">
+        <input id="inputName" type="text" placeholder="Name e.g. Netflix" />
+        <input id="inputUrl" type="url" placeholder="URL optional" />
+        <div class="price-row">
+          <select id="selectCurrency">
+            <option value="$">$</option>
+            <option value="&euro;">&euro;</option>
+            <option value="&pound;">&pound;</option>
+            <option value="&yen;">&yen;</option>
+          </select>
+          <input id="inputPrice" type="number" step="0.01" placeholder="Price" />
+          <select id="selectInterval">
+            <option value="month">/mo</option>
+            <option value="year">/yr</option>
+            <option value="week">/wk</option>
+          </select>
+        </div>
+        <button id="btnAdd" class="btn btn-primary">Add</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">My Subscriptions</div>
+      <div id="subList" class="sub-list">
+        <div class="empty-state">No subscriptions tracked yet</div>
+      </div>
+    </div>
+
+    <div id="syncPanel" class="panel sync-panel">
+      <div class="panel-title">Cloud Sync</div>
+      <div id="syncStatus">
+        <span id="syncText">Not connected</span>
+        <button id="btnSyncSetup" class="btn btn-link">Connect &rarr;</button>
+      </div>
+    </div>
+
+    <div class="footer">
+      <button id="btnCheckNow" class="btn btn-secondary">Check Now</button>
+      <button id="btnOpenDashboard" class="btn btn-link">Full Dashboard &rarr;</button>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
