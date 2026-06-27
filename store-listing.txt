@@ -1,0 +1,71 @@
+========================================
+CHROME WEB STORE LISTING
+========================================
+
+Extension Name: PriceWatch - Subscription Price Tracker
+Category: Productivity
+Language: English
+
+--- Short Description (132 chars max) ---
+Automatically track price changes on your SaaS subscriptions. Get notified when Netflix, Spotify, or any subscription changes price.
+
+--- Full Description ---
+Never get surprised by a price hike again. PriceWatch automatically monitors your subscription services and notifies you when prices change.
+
+HOW IT WORKS:
+1. Browse any subscription or pricing page
+2. Click Track This in the PriceWatch popup to start monitoring
+3. PriceWatch automatically checks for price changes every hour
+4. Get instant browser notifications when prices go up or down
+
+FEATURES:
+• One-click auto-detection of prices on any subscription page
+• Automatic hourly price checking
+• Browser notifications when prices change
+• Complete price history for every subscription
+• Monthly spending overview
+• Search and filter subscriptions
+• Data export/backup
+• Optional cloud sync across devices (Pro feature coming soon)
+
+USE CASES:
+• Track SaaS subscription prices (Netflix, Spotify, AWS, GitHub, etc.)
+• Monitor hosting plan prices
+• Watch for price drops on services you're considering
+• Keep an eye on competitor pricing
+
+PRICING:
+• Free: Track up to 3 subscriptions
+• Pro (/mo): Track up to 50 subscriptions with email alerts (coming soon)
+
+WHAT MAKES PRICEWATCH DIFFERENT:
+• Works automatically - just browse normally
+• No manual entry needed for most subscriptions
+• Price detection engine handles multiple currencies and formats
+• Full privacy: data stays on your device (cloud sync is optional)
+
+--- Screenshot Alt Text ---
+Main dashboard showing subscription list with prices and change alerts
+
+========================================
+PRIVACY POLICY URL
+========================================
+https://pricewatch-liart.vercel.app/privacy
+
+========================================
+DEVELOPER INFO
+========================================
+Developer Name: (Your name)
+Developer Email: rayvin19901110@gmail.com
+
+========================================
+SUBMISSION CHECKLIST
+========================================
+[ ] 1. Go to https://chrome.google.com/webstore/devconsole
+[ ] 2. Pay  one-time developer registration fee
+[ ] 3. Click New Item
+[ ] 4. Upload pricewatch-extension.zip
+[ ] 5. Fill in store listing (copy from above)
+[ ] 6. Upload screenshots and promo images from store-assets/
+[ ] 7. Set privacy policy URL: https://pricewatch-liart.vercel.app/privacy
+[ ] 8. Submit for review

@@ -5,5 +5,3 @@ node_modules/
 *.crx
 extension.pem
 .DS_Store
-
-.vercel
