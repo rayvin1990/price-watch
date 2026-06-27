@@ -8,15 +8,12 @@ export type AuthResult = {
   status?: number
 }
 
-// Validate auth for both Clerk sessions and API tokens
 export async function validateAuth(request?: Request): Promise<AuthResult> {
-  // Try Clerk auth first (for web app users)
   const { userId } = auth()
   if (userId) {
     return { userId }
   }
 
-  // Fallback: check API token from Authorization header (for extension)
   if (request) {
     const authHeader = request.headers.get('Authorization')
     if (authHeader && authHeader.startsWith('Bearer pw_')) {
@@ -29,13 +26,14 @@ export async function validateAuth(request?: Request): Promise<AuthResult> {
         .single()
 
       if (data && !error) {
-        // Update last_used_at (fire and forget)
-        supabaseAdmin
-          .from('api_tokens')
-          .update({ last_used_at: new Date().toISOString() })
-          .eq('token', token)
-          .then(() => {})
-          .catch(() => {})
+        try {
+          await supabaseAdmin
+            .from('api_tokens')
+            .update({ last_used_at: new Date().toISOString() })
+            .eq('token', token)
+        } catch (_e) {
+          // non-fatal
+        }
 
         return { userId: data.user_id }
       }
@@ -45,7 +43,6 @@ export async function validateAuth(request?: Request): Promise<AuthResult> {
   return { userId: null, error: 'Unauthorized', status: 401 }
 }
 
-// Helper to return unauthorized response
 export function unauthorizedResponse(message = 'Unauthorized') {
   return NextResponse.json({ error: message }, { status: 401 })
 }
