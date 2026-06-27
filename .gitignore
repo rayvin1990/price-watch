@@ -5,3 +5,7 @@ node_modules/
 *.crx
 extension.pem
 .DS_Store
+
+# Vercel local config
+.vercel/
+*.zip
