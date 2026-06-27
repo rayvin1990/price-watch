@@ -73,20 +73,20 @@ export default function Dashboard() {
         {/* Stats */}
         <div className="grid grid-cols-3 gap-6 mb-8">
           <div className="bg-white rounded-2xl p-6 shadow-sm border">
-            <div className="text-3xl font-bold text-blue-600">{subscriptions.length}</div></div>
-            <div className="text-sm text-gray-500 mt-1">Subscriptions Tracked</div></div>
-          </div></div>
+            <div className="text-3xl font-bold text-blue-600">{subscriptions.length}</div>
+            <div className="text-sm text-gray-500 mt-1">Subscriptions Tracked</div>
+          </div>
           <div className="bg-white rounded-2xl p-6 shadow-sm border">
-            <div className="text-3xl font-bold text-red-500">{changes.length}</div></div>
-            <div className="text-sm text-gray-500 mt-1">Price Changes</div></div>
-          </div></div>
+            <div className="text-3xl font-bold text-red-500">{changes.length}</div>
+            <div className="text-sm text-gray-500 mt-1">Price Changes</div>
+          </div>
           <div className="bg-white rounded-2xl p-6 shadow-sm border">
             <div className="text-3xl font-bold text-blue-600">
               {subscriptions.length > 0 ? `$${monthlyTotal.toFixed(2)}` : '$0'}
-            </div></div>
-            <div className="text-sm text-gray-500 mt-1">Monthly Spend</div></div>
-          </div></div>
-        </div></div>
+            </div>
+            <div className="text-sm text-gray-500 mt-1">Monthly Spend</div>
+          </div>
+        </div>
 
         {/* Subscriptions list */}
         <div className="bg-white rounded-2xl shadow-sm border">
