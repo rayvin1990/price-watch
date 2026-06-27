@@ -5,9 +5,12 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
-// 服务端用的 admin client（跳过 RLS）
+// Admin client - falls back to anon key if service role key is not available
+const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY || supabaseAnonKey
 export const supabaseAdmin = createClient(
   supabaseUrl,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!,
-  { auth: { autoRefreshToken: false, persistSession: false } }
+  serviceRoleKey,
+  serviceRoleKey !== supabaseAnonKey
+    ? { auth: { autoRefreshToken: false, persistSession: false } }
+    : {}
 )
