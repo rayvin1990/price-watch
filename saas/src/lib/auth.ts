@@ -24,7 +24,7 @@ export async function validateAuth(request?: Request): Promise<AuthResult> {
 
       if (data && !error) {
         // Touch last_used_at (fire and forget)
-        supabase.rpc('touch_api_token', { p_token: token }).then(() => {}).catch(() => {})
+        try { await supabase.rpc("touch_api_token", { p_token: token }) } catch(_e) {}
         return { userId: data }
       }
 
