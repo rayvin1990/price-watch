@@ -1,5 +1,5 @@
 import { auth } from '@clerk/nextjs/server'
-import { supabaseAdmin } from '@/lib/supabase'
+import { supabase, supabaseAdmin } from '@/lib/supabase'
 import { NextResponse } from 'next/server'
 
 export type AuthResult = {
@@ -19,23 +19,32 @@ export async function validateAuth(request?: Request): Promise<AuthResult> {
     if (authHeader && authHeader.startsWith('Bearer pw_')) {
       const token = authHeader.slice(7)
 
-      const { data, error } = await supabaseAdmin
-        .from('api_tokens')
-        .select('user_id')
-        .eq('token', token)
-        .single()
+      // Try RPC first (no service_role_key needed)
+      const { data, error } = await supabase.rpc('verify_api_token', { p_token: token })
 
       if (data && !error) {
-        try {
-          await supabaseAdmin
-            .from('api_tokens')
-            .update({ last_used_at: new Date().toISOString() })
-            .eq('token', token)
-        } catch (_e) {
-          // non-fatal
-        }
+        // Touch last_used_at (fire and forget)
+        supabase.rpc('touch_api_token', { p_token: token }).then(() => {}).catch(() => {})
+        return { userId: data }
+      }
 
-        return { userId: data.user_id }
+      // Fallback: try admin client if available
+      if (process.env.SUPABASE_SERVICE_ROLE_KEY) {
+        const { data: adminData, error: adminError } = await supabaseAdmin
+          .from('api_tokens')
+          .select('user_id')
+          .eq('token', token)
+          .single()
+
+        if (adminData && !adminError) {
+          try {
+            await supabaseAdmin
+              .from('api_tokens')
+              .update({ last_used_at: new Date().toISOString() })
+              .eq('token', token)
+          } catch (_e) {}
+          return { userId: adminData.user_id }
+        }
       }
     }
   }
